@@ -42,6 +42,15 @@ int main()
 			
 			fprintf(stdout, "%.2f", VAR_FVAL(variant_record[i].v));
 		
+		} else if(VAR_TYPE(variant_record[i].v) == IS_STRING) {
+			
+			fprintf(stdout, "%s (%zu)", VAR_SVAL(variant_record[i].v), 
+						VAR_SLEN(variant_record[i].v));	
+
+		} else if(VAR_TYPE(variant_record[i].v)) {
+		
+			fprintf(stdout, "%ld", VAR_LVAL(variant_record[i].v));
+
 		} else {
 		
 			var_print(variant_record[i].v);
@@ -54,6 +63,7 @@ int main()
 	
 	for(i = 0; i < RECORD_SIZE; i++) {
 	
+		/* Free memory */
 		var_destroy(variant_record[i].v);
 
 	}
