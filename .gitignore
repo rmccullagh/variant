@@ -1,0 +1,6 @@
+*.[ao]
+Makefile
+main
+*~
+variant-*.tar.gz
+.*.swp
