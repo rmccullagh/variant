@@ -47,7 +47,7 @@ int main()
 			fprintf(stdout, "%s (%zu)", VAR_SVAL(variant_record[i].v), 
 						VAR_SLEN(variant_record[i].v));	
 
-		} else if(VAR_TYPE(variant_record[i].v)) {
+		} else if(VAR_TYPE(variant_record[i].v) == IS_LONG) {
 		
 			fprintf(stdout, "%ld", VAR_LVAL(variant_record[i].v));
 
