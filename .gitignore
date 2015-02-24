@@ -1,6 +1,7 @@
 *.[ao]
 Makefile
 main
+*.exe
 *~
 variant-*.tar.gz
 .*.swp
