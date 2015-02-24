@@ -4,10 +4,12 @@ Variant Record, Tagged Union, Discriminated Union. Using this system allows a sy
 
 Type
 ====
+```c
 typedef enum {
 	IS_LONG,
 	IS_FLOAT,
 	IS_STRING
 } Type;
+```
 
 
