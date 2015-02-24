@@ -23,8 +23,12 @@
 #include <string.h>
 #include <errno.h>
 
+#define VAR_API __attribute__ ((visibility ("hidden")))
 #define VAR_FVAL(v) (v)->val.fval
-#define VAR_TYPE(v) var_type_of(v)
+#define VAR_LVAL(v) (v)->val.lval
+#define VAR_SVAL(v) (v)->val.str.sval
+#define VAR_SLEN(v) (v)->val.str.len
+#define VAR_TYPE(v) (v)->type
 
 typedef enum {
         IS_LONG,
