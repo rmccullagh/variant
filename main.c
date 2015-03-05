@@ -17,7 +17,9 @@
 
 #include "var.h"
 
-#define RECORD_SIZE 4
+#define A_LEN 4
+
+#define VARIANT_RECORD_ARRAY_SIZE(s) (s * sizeof(VariantRecord))
 
 typedef struct _VariantRecord {
 	Var* v;			/* 4 or 8 bytes */
@@ -25,7 +27,7 @@ typedef struct _VariantRecord {
 
 int main()
 {
-	VariantRecord *variant_record = malloc(RECORD_SIZE * sizeof(VariantRecord));
+	VariantRecord *variant_record = malloc(A_LEN * sizeof(VariantRecord));
 	
 	variant_record[0].v = var_string("Ryan McCullagh");
 	variant_record[1].v = var_long(24);
@@ -34,7 +36,7 @@ int main()
 
 	size_t i;
 
-	for(i = 0; i < RECORD_SIZE; i++) {
+	for(i = 0; i < A_LEN; i++) {
 		
 		fprintf(stdout, "variant_record[%zu]=", i);
 		
@@ -58,10 +60,30 @@ int main()
 		}
 
 		fprintf(stdout, "\n");
-	
+
 	}
 	
-	for(i = 0; i < RECORD_SIZE; i++) {
+	size_t len;
+	char* sval;
+
+	for(i = 0; i < A_LEN; i++) {
+		
+		sval = var_to_string(variant_record[i].v, &len);
+
+		if(sval == NULL) {
+
+			printf("sval == NULL\n");
+
+		} else {
+			
+			printf("%s\n", sval);
+
+			free(sval);
+		}
+
+	}
+
+	for(i = 0; i < A_LEN; i++) {
 	
 		/* Free memory */
 		var_destroy(variant_record[i].v);
