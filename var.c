@@ -162,6 +162,80 @@ void var_destroy(Var* var)
         }
 }
 
+char* var_to_string(Var* var, size_t *length)
+{
+
+	char* out = NULL;
+
+	/* It's important not to call this on a IS_STRING var type */
+	if(VAR_TYPE(var) == IS_STRING) {
+		
+		out = malloc(VAR_SLEN(var) + 1);
+
+		if(out == NULL) {
+
+			fprintf(stderr, "Malloc error! %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
+			exit(1);
+
+		} else {
+			
+			memcpy(out, VAR_SVAL(var), VAR_SLEN(var) + 1);
+
+			*length = VAR_SLEN(var);
+
+			return out;
+		}	
+	
+
+	} else {
+
+		out = malloc(sizeof(char) * 100);
+
+		if(out == NULL) {
+
+			fprintf(stderr, "Malloc error! %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
+			exit(1);
+
+		} else {
+		
+			int size;
+
+			switch(VAR_TYPE(var)) {
+
+				case IS_LONG:
+					
+					size = sprintf(out, "%ld", VAR_LVAL(var));
+			  
+					*length = size;
+
+					return out;		
+				
+				case IS_FLOAT:
+
+					size = sprintf(out, "%.2f", VAR_FVAL(var));
+
+					*length = size;
+
+					return out;
+
+				default:
+
+					*length = 0;
+
+					return NULL;
+			}
+
+		}
+
+		/* NOT REACHED */
+		return NULL;
+
+	}
+		
+	/* NOT REACHED */
+	return NULL;
+}
+
 const char* const var_type_of_token(Type t)
 {
         if(t < sizeof(type_string) / sizeof(type_string[0])) {
