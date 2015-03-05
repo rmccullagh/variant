@@ -1,4 +1,5 @@
 *.[ao]
+*.so
 main
 *.exe
 *~
