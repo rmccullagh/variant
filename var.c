@@ -18,7 +18,7 @@
 #include "var.h"
 
 /* PRIVATE, read only */
-static const char const *type_string[] = {
+static const char* type_string[] = {
         "IS_LONG",
         "IS_FLOAT",
         "IS_STRING"
@@ -103,32 +103,60 @@ Type var_type_of(Var* var)
 
 void var_print(Var* var)
 {
-        Type t = var_type_of(var);
-
-        switch(t) {
+      	switch(VAR_TYPE(var)) {
 
                 case IS_LONG:
 
-                        fprintf(stdout, "%ld", var->val.lval);
+                        fprintf(stdout, "%ld", VAR_LVAL(var));
 
                 break;
 
                 case IS_FLOAT:
 
-                        fprintf(stdout, "%f", var->val.fval);
+                        fprintf(stdout, "%.2f", VAR_FVAL(var));
 
                 break;
 
                 case IS_STRING:
 
-                        fprintf(stdout, "%s", var->val.str.sval);
+                        fprintf(stdout, "%s", VAR_SVAL(var));
 
                 break;
 
                 default:
 
-                        fprintf(stdout, "%s\n",
-                         "Var not found. This should not be happening!");
+                        fprintf(stdout, "Var not found. %s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
+
+                break;
+
+        }
+}
+
+void var_print_line(Var* var)
+{
+      	switch(VAR_TYPE(var)) {
+
+                case IS_LONG:
+
+                        fprintf(stdout, "%ld\n", VAR_LVAL(var));
+
+                break;
+
+                case IS_FLOAT:
+
+                        fprintf(stdout, "%.2f\n", VAR_FVAL(var));
+
+                break;
+
+                case IS_STRING:
+
+                        fprintf(stdout, "%s\n", VAR_SVAL(var));
+
+                break;
+
+                default:
+
+                        fprintf(stdout, "Var not found. %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
 
                 break;
 
@@ -184,8 +212,10 @@ char* var_to_string(Var* var, size_t *length)
 			*length = VAR_SLEN(var);
 
 			return out;
-		}	
-	
+		}
+
+		/* NOT REACHED */
+		return NULL;	
 
 	} else {
 
@@ -225,6 +255,9 @@ char* var_to_string(Var* var, size_t *length)
 					return NULL;
 			}
 
+			/* NOT REACHED */
+			return NULL;
+
 		}
 
 		/* NOT REACHED */
@@ -236,7 +269,7 @@ char* var_to_string(Var* var, size_t *length)
 	return NULL;
 }
 
-const char* const var_type_of_token(Type t)
+const char* var_type_of_token(Type t)
 {
         if(t < sizeof(type_string) / sizeof(type_string[0])) {
 
