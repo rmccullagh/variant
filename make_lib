@@ -1,0 +1,7 @@
+#!/bin/bash
+
+gcc -c -o variant.o var.c
+
+ar rcs ~/lib/libvariant.a variant.o
+
+cp var.h ~/include/var.h
