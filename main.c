@@ -83,6 +83,28 @@ int main()
 
 	}
 
+	fprintf(stdout, "*** BEGIN var_print_line ***\n");
+
+	for(i = 0; i < A_LEN; i++) {
+
+		var_print_line(variant_record[i].v);
+
+	}
+
+	fprintf(stdout, "*** END var_print_line ***\n");
+	
+	fprintf(stdout, "*** BEGIN var_print ***\n");
+
+	for(i = 0; i < A_LEN; i++) {
+
+		var_print(variant_record[i].v);
+		printf("\n");
+
+	}
+
+	fprintf(stdout, "*** END var_print ***\n");
+	
+	
 	for(i = 0; i < A_LEN; i++) {
 	
 		/* Free memory */
