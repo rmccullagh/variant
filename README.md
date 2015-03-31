@@ -92,4 +92,4 @@ This macro expands to extract the `Type` value from a `Var` object.
 
 TODO
 ====
-Create a build system to allow for this system to be compiled as a libary
+[*] Create a build system to allow for this system to be compiled as a libary
