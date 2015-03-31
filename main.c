@@ -98,8 +98,11 @@ int main()
 	for(i = 0; i < A_LEN; i++) {
 
 		var_print(variant_record[i].v);
+		printf(" (");
+		printf("%s", var_type_of_token(VAR_TYPE(variant_record[i].v)));
+		printf(")");
 		printf("\n");
-
+	
 	}
 
 	fprintf(stdout, "*** END var_print ***\n");
