@@ -58,6 +58,6 @@ void var_print(Var* var);
 void var_print_line(Var* var);
 void var_destroy(Var* var);
 char* var_to_string(Var* var, size_t *length);
-const char* var_type_of_token(Type t);
+const char *const var_type_of_token(Type t);
 
 #endif /* __VAR_H__ */
