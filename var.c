@@ -18,7 +18,7 @@
 #include "var.h"
 
 /* PRIVATE, read only */
-static const char* type_string[] = {
+static const char *const type_string[] = {
         "IS_LONG",
         "IS_FLOAT",
         "IS_STRING"
@@ -269,7 +269,7 @@ char* var_to_string(Var* var, size_t *length)
 	return NULL;
 }
 
-const char* var_type_of_token(Type t)
+const char *const var_type_of_token(Type t)
 {
         if(t < sizeof(type_string) / sizeof(type_string[0])) {
 
