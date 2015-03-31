@@ -106,27 +106,20 @@ void var_print(Var* var)
       	switch(VAR_TYPE(var)) {
 
                 case IS_LONG:
-
                         fprintf(stdout, "%ld", VAR_LVAL(var));
-
                 break;
 
                 case IS_FLOAT:
-
                         fprintf(stdout, "%.2f", VAR_FVAL(var));
-
                 break;
 
                 case IS_STRING:
-
                         fprintf(stdout, "%s", VAR_SVAL(var));
-
                 break;
 
                 default:
-
-                        fprintf(stdout, "Var not found. %s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
-
+                        fprintf(stdout, "Var not found. %s:%s:%d", __FILE__, 
+				__FUNCTION__, __LINE__);
                 break;
 
         }
@@ -137,27 +130,20 @@ void var_print_line(Var* var)
       	switch(VAR_TYPE(var)) {
 
                 case IS_LONG:
-
                         fprintf(stdout, "%ld\n", VAR_LVAL(var));
-
                 break;
 
                 case IS_FLOAT:
-
                         fprintf(stdout, "%.2f\n", VAR_FVAL(var));
-
                 break;
 
                 case IS_STRING:
-
                         fprintf(stdout, "%s\n", VAR_SVAL(var));
-
                 break;
 
                 default:
-
-                        fprintf(stdout, "Var not found. %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
-
+                        fprintf(stdout, "Var not found. %s:%s:%d\n", __FILE__, 
+				__FUNCTION__, __LINE__);
                 break;
 
         }
@@ -183,8 +169,8 @@ void var_destroy(Var* var)
                 break;
 
                 default:
-                        fprintf(stdout, "%s\n",
-                         "Var not found. This should not be happening!");
+                        fprintf(stdout, "Var not found. %s:%s:%d\n", __FILE__, 
+				__FUNCTION__, __LINE__);
                 break;
 
         }
@@ -202,7 +188,8 @@ char* var_to_string(Var* var, size_t *length)
 
 		if(out == NULL) {
 
-			fprintf(stderr, "Malloc error! %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
+			fprintf(stderr, "Malloc error! %s:%s:%d\n", __FILE__, 
+				__FUNCTION__, __LINE__);
 			exit(1);
 
 		} else {
@@ -223,7 +210,8 @@ char* var_to_string(Var* var, size_t *length)
 
 		if(out == NULL) {
 
-			fprintf(stderr, "Malloc error! %s:%s:%d\n", __FILE__, __FUNCTION__, __LINE__);
+			fprintf(stderr, "Malloc error! %s:%s:%d\n", __FILE__,
+ 				__FUNCTION__, __LINE__);
 			exit(1);
 
 		} else {
@@ -233,23 +221,22 @@ char* var_to_string(Var* var, size_t *length)
 			switch(VAR_TYPE(var)) {
 
 				case IS_LONG:
-					
-					size = sprintf(out, "%ld", VAR_LVAL(var));
-			  
+					size = sprintf(out, "%ld", 
+						VAR_LVAL(var));
+		
 					*length = size;
 
 					return out;		
 				
 				case IS_FLOAT:
-
-					size = sprintf(out, "%.2f", VAR_FVAL(var));
+					size = sprintf(out, "%.2f", 
+						VAR_FVAL(var));
 
 					*length = size;
 
 					return out;
 
 				default:
-
 					*length = 0;
 
 					return NULL;
